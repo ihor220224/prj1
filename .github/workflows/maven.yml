@@ -26,7 +26,14 @@ jobs:
 
     runs-on: ubuntu-20.04
 
-
+# vvv
+    container:
+      image: amazon/aws-cli:2.9.8
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.TF_USER_AWS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_USER_AWS_SECRET }}
+        AWS_DEFAULT_REGION: ${{ secrets.BUCKET_REGION }}
+        AWS_S3_BUCKET: ${{ secrets.S3_BUCKET }}
 
     steps:
     - uses: actions/checkout@v3
@@ -51,20 +58,8 @@ jobs:
         name: package
         path: target/citizen.war
 
-# vvv
-  staging-deployment:
-  name: deploy to s3
-    runs-on: ubuntu-20.04
-    container:
-      image: amazon/aws-cli:2.9.8
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.TF_USER_AWS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.TF_USER_AWS_SECRET }}
-        AWS_DEFAULT_REGION: ${{ secrets.BUCKET_REGION }}
-        AWS_S3_BUCKET: ${{ secrets.S3_BUCKET }}
-# ^^^
     - name: Upload statisc content to S3
       run: aws s3 sync dist ${{ secrets.S3_BUCKET }} --delete
       working-directory: target/
       
-# ^^^
+
