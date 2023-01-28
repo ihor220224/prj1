@@ -38,7 +38,7 @@ jobs:
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-      
+
     - name: Upload results
       uses: actions/upload-artifact@v3
       with:
@@ -60,9 +60,9 @@ jobs:
         AWS_S3_BUCKET: ${{ secrets.S3_BUCKET }}
 
 
-
-#    - name: Upload statisc content to S3
-#      run: aws s3 sync dist ${{ secrets.S3_BUCKET }} --delete
-#      working-directory: target/
+    steps:
+    - name: Upload statisc content to S3
+      run: aws s3 sync dist ${{ secrets.S3_BUCKET }} --delete
+      working-directory: target/
       
 
