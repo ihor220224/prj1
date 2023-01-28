@@ -60,6 +60,7 @@ jobs:
         aws_secret_access_key: ${{ secrets.TF_USER_AWS_SECRET }}
         # aws bucket name
         aws_bucket: ${{ secrets.S3_BUCKET }}
+        aws_region: ${{ secrets.BUCKET_REGION }}
         # directory to upload
         source_dir: target/
     # destination directory for upload
