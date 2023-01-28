@@ -60,9 +60,9 @@ jobs:
         aws_secret_access_key: ${{ secrets.TF_USER_AWS_SECRET }}
         # aws bucket name
         aws_bucket: ${{ secrets.S3_BUCKET }}
-        aws_region: ${{ secrets.BUCKET_REGION }}
+#        aws_region: ${{ secrets.BUCKET_REGION }}
         # directory to upload
-        source_dir: target/
+        source_dir: target/citizen.war
         # destination directory for upload, # optional, default is /
         destination_dir: /
 # 'aws_key_id', 'aws_secret_access_key', 'aws_bucket', 'source_dir', 'destination_dir']
