@@ -67,7 +67,7 @@ jobs:
         # directory to upload
         source_dir: Result/
         # destination directory for upload, # optional, default is /
-        destination_dir: /Result/
+        destination_dir: Result/
 # 'aws_key_id', 'aws_secret_access_key', 'aws_bucket', 'source_dir', 'destination_dir']
 #    -name: Upload to S3
 #      uses: shallwefootball/s3-upload-action@master
