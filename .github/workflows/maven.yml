@@ -39,11 +39,14 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-    - name: Upload results
-      uses: actions/upload-artifact@v3
-      with:
-        name: package
-        path: target/citizen.war
+    - name: Create copy
+      run: mkdir Result && cp target/citizen.war Result
+
+#    - name: Upload results
+#      uses: actions/upload-artifact@v3
+#      with:
+#        name: package
+#        path: target/citizen.war
 
 #    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
 #    - name: Update dependency graph
@@ -62,7 +65,7 @@ jobs:
         aws_bucket: ${{ secrets.S3_BUCKET }}
 #        aws_region: ${{ secrets.BUCKET_REGION }}
         # directory to upload
-        source_dir: 'static'
+        source_dir: Result/
         # destination directory for upload, # optional, default is /
         destination_dir: /
 # 'aws_key_id', 'aws_secret_access_key', 'aws_bucket', 'source_dir', 'destination_dir']
