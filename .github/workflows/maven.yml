@@ -62,7 +62,7 @@ jobs:
         aws_bucket: ${{ secrets.S3_BUCKET }}
 #        aws_region: ${{ secrets.BUCKET_REGION }}
         # directory to upload
-        source_dir: target/citizen.war
+        source_dir: /home/runner/work/prj1/prj1/target/
         # destination directory for upload, # optional, default is /
         destination_dir: /
 # 'aws_key_id', 'aws_secret_access_key', 'aws_bucket', 'source_dir', 'destination_dir']
