@@ -22,6 +22,7 @@ resource "aws_instance" "app_server" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   key_name      = "aster2"
+  monitoring    = true
 
   tags = {
     Name = var.ec2_name
