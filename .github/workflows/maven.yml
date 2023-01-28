@@ -60,6 +60,8 @@ jobs:
         path: target/citizen.war
 
 # vvv
+
     - name: Upload statisc content to S3
-        run: aws s3 sync dist ${{ secrets.S3_BUCKET }} --delete
+      run: aws s3 sync dist ${{ secrets.S3_BUCKET }} --delete
+      working-directory: target/
 # ^^^
