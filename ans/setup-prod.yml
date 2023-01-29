@@ -1,6 +1,6 @@
 ---
 - name: Server setup using ansible
-  hosts: all
+  hosts: ${{ github.event.inputs.vm-ip }}
   remote_user: ${{secrets.ANSIBLE_DEPLOY_USER}} 
   become: true
   tasks:
