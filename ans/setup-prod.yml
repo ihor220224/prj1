@@ -1,0 +1,11 @@
+---
+- name: Server setup using ansible
+  hosts: all
+  remote_user: ${{secrets.ANSIBLE_DEPLOY_USER}} 
+  become: true
+  tasks:
+    - name: Update the System Packages
+      apt:
+        upgrade: yes
+        update_cache: yes
+ 
