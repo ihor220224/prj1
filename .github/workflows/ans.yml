@@ -1,0 +1,34 @@
+name: Run ans on vm
+
+on:
+  workflow_dispatch:
+    inputs:
+      vm-ip:
+        description: VM IP
+        required: true
+        default: '1.2.3.4'
+        type: string
+jobs:
+  run-playbooks:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v3
+#        with:
+#          submodules: true
+#          token: ${{secrets.REPO_TOKEN}}
+      - name: Setup SSH 
+        shell: bash
+        run: |
+         eval `ssh-agent -s`
+         mkdir -p /home/runner/.ssh/
+         touch /home/runner/.ssh/id_rsa
+         echo -e "${{secrets.SSH_KEY}}" > /home/runner/.ssh/id_rsa
+         chmod 700 /home/runner/.ssh/id_rsa
+         ssh-keyscan -t rsa,dsa,ecdsa,ed25519 ${{ github.event.inputs.vm-ip }} >> /home/runner/.ssh/known_hosts
+      - name: Run ansible script
+        shell: bash 
+        run: |
+          service ssh status
+          cd ans
+          cat setup-prod.yml
+          ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{secrets.ANSIBLE_DEPLOY_USER}} -l ${{ github.event.inputs.vm-ip }} setup-prod.yml
