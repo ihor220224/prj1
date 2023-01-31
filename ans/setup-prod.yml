@@ -1,12 +1,15 @@
 ---
 - name: Server setup using ansible
   hosts: all
-  # ${{ github.event.inputs.vm-ip }}
-  # remote_user: ${{ vars.ANSIBLE_DEPLOY_USER }} 
   become: true
   tasks:
     - name: Update the System Packages
       apt:
         upgrade: yes
         update_cache: yes
- 
+    - name: Install 
+      ansible.builtin.apt:
+        pkg:
+          - postgresql 
+          - postgresql-contrib 
+          - tomcat9
