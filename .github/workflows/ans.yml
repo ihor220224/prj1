@@ -33,4 +33,4 @@ jobs:
           echo "cat setup-prod.yml"
           cat setup-prod.yml
           echo 
-          ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{secrets.ANSIBLE_DEPLOY_USER}} --inventory="${{ github.event.inputs.vm-ip }}," -l  -l ${{ github.event.inputs.vm-ip }} setup-prod.yml
+          ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{secrets.ANSIBLE_DEPLOY_USER}} --inventory="${{ github.event.inputs.vm-ip }}," -l ${{ github.event.inputs.vm-ip }} setup-prod.yml
