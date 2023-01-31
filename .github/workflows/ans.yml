@@ -19,12 +19,12 @@ jobs:
       - name: Setup SSH 
         shell: bash
         env:
-          SSH_KEY: ${{ secrets.SSH_KEY }}
+          ENV_SSH_KEY: ${{ secrets.SSH_KEY }}
         run: |
          eval `ssh-agent -s`
          mkdir -p /home/runner/.ssh/
          touch /home/runner/.ssh/id_rsa
-         echo -e "$SSH_KEY" > /home/runner/.ssh/id_rsa
+         echo -e "$ENV_SSH_KEY" > /home/runner/.ssh/id_rsa
          chmod 700 /home/runner/.ssh/id_rsa
          echo "cat /home/runner/.ssh/id_rsa"
          cat /home/runner/.ssh/id_rsa
@@ -36,5 +36,5 @@ jobs:
           cd ans
           echo "cat setup-prod.yml"
           cat setup-prod.yml
-          echo ${{ vars.ANSIBLE_DEPLOY_USER }}
+          echo ANSIBLE_DEPLOY_USER is ${{ vars.ANSIBLE_DEPLOY_USER }}
           ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{ vars.ANSIBLE_DEPLOY_USER }} --inventory="${{ github.event.inputs.vm-ip }}," -l ${{ github.event.inputs.vm-ip }} setup-prod.yml
