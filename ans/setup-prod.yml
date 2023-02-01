@@ -12,6 +12,8 @@
         pkg:
           - postgresql 
           - postgresql-contrib 
+          - python3-psycopg2
+          - acl
           - tomcat9
 #        notify:
 #          - Enable Postgresql     
