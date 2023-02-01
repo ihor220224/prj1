@@ -26,8 +26,8 @@
       
     - name: Change peer identification to trust
       shell: /bin/sed -i '/^local/s/peer/trust/' /etc/postgresql/12/main/pg_hba.conf
-      args:
-        warn: no
+#      args:
+#        warn: no
       notify: Restart Postgresql   
       
     - name: Create a Superuser PostgreSQL database user
