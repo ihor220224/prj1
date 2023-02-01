@@ -31,6 +31,13 @@
 #      args:
 #        warn: no
       notify: Restart Postgresql   
+
+    - name: "Create app database"
+      postgresql_db:
+        state: present
+        name: db1
+      become: yes
+      become_user: postgres
       
     - name: Create a Superuser PostgreSQL database user
       become: yes
@@ -41,7 +48,17 @@
         role_attr_flags: CREATEDB,SUPERUSER,CREATEROLE
         encrypted: yes
         state: present
-
+        
+    - name: "Grant db user access to app db"
+      postgresql_privs:
+        type: database
+        database: db1
+        roles: user1
+        grant_option: no
+        privs: all
+      become: yes
+      become_user: postgres
+      
   handlers:
     - name: Restart Postgresql
       systemd:
