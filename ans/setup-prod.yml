@@ -13,3 +13,50 @@
           - postgresql 
           - postgresql-contrib 
           - tomcat9
+        notify:
+          - Enable Postgresql     
+          
+    - name: Add new configuration to "pg_hba.conf"
+      blockinfile:
+        dest: /etc/postgresql/12/main/pg_hba.conf
+        block: |
+          host    all             all             0.0.0.0/0                md5
+          host    all             all             ::/0                     md5
+      notify: Restart Postgresql
+      
+    - name: Change peer identification to trust
+      shell: /bin/sed -i '/^local/s/peer/trust/' /etc/postgresql/12main/pg_hba.conf
+      args:
+        warn: no
+      notify: Restart Postgresql   
+      
+    - name: Create a Superuser PostgreSQL database user
+      become: yes
+      become_user: postgres
+      postgresql_user:
+        name: user1
+        password: user1
+        role_attr_flags: CREATEDB,SUPERUSER,CREATEROLE
+        encrypted: yes
+        state: present
+
+  handlers:
+    - name: Restart Postgresql
+      systemd:
+        name: postgresql
+        state: restarted
+
+    - name: Start Postgresql
+      systemd:
+        name: postgresql
+        state: started
+
+    - name: Stop Postgresql
+      systemd:
+        name: postgresql
+        state: stopped
+
+    - name: Enable Postgresql
+      systemd:
+        name: postgresql
+        enabled: yes      
