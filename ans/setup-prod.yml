@@ -13,8 +13,8 @@
           - postgresql 
           - postgresql-contrib 
           - tomcat9
-        notify:
-          - Enable Postgresql     
+#        notify:
+#          - Enable Postgresql     
           
     - name: Add new configuration to "pg_hba.conf"
       blockinfile:
