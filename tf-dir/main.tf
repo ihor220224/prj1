@@ -23,7 +23,8 @@ resource "aws_instance" "app_server" {
   instance_type = "t2.micro"
   key_name      = "aster2"
   monitoring    = true
-
+  vpc_security_group_ids = ["sg-006189b5b294d2697"]
+    
   tags = {
     Name = var.ec2_name
   }
