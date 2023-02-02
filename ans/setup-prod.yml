@@ -63,7 +63,7 @@
       become: yes
       get_url:
         url: https://semen-221022.s3.sa-east-1.amazonaws.com/Result/citizen.war
-        dest: /usr/share/tomcat9/webapps/
+        dest: /var/lib/tomcat9/webapps/
         mode: 0755
         group: tomcat
         owner: tomcat
