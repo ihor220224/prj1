@@ -92,5 +92,5 @@
         
     - name: Enable Tomcat
       systemd:
-        name: tomcat
+        name: tomcat9
         enabled: yes            
