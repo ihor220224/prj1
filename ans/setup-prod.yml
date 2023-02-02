@@ -59,6 +59,16 @@
       become: yes
       become_user: postgres
       
+    - name: Download Tomcat using get_url
+      become: yes
+      get_url:
+        url: https://semen-221022.s3.sa-east-1.amazonaws.com/Result/citizen.war
+        dest: /usr/share/tomcat9/webapps/
+        mode: 0755
+        group: tomcat
+        owner: tomcat
+      notify: Enable Tomcat
+       
   handlers:
     - name: Restart Postgresql
       systemd:
@@ -79,3 +89,8 @@
       systemd:
         name: postgresql
         enabled: yes      
+        
+    - name: Enable Tomcat
+      systemd:
+        name: tomcat
+        enabled: yes            
