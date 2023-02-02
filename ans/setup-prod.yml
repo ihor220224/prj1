@@ -32,6 +32,10 @@
 #        warn: no
       notify: Restart Postgresql   
 
+    - name: Disable ufw
+      ufw:
+        state: disabled
+
     - name: "Create app database"
       postgresql_db:
         state: present
