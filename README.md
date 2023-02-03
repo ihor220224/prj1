@@ -1,4 +1,11 @@
 <<<<<<< HEAD
+# SS lab task
+
+ans.yml - ansible playbook for installation and configuration software on ec2
+deploy-static-content-to-s3.yaml - deploy package to s3
+maven.yml - build and test package
+provision_ec2.yml - create ec2 instance
+
 # ch-058, geocitizen
 
 ___build and deploy (ubuntu16, git2, maven3, tomcat9)___
