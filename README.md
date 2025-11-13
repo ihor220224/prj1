@@ -1,5 +1,7 @@
-<<<<<<< HEAD
 # SS lab task
+
+1234
+1234
 
 ans.yml - ansible playbook for installation and configuration software on ec2
 deploy-static-content-to-s3.yaml - deploy package to s3
@@ -38,6 +40,4 @@ to generate the production build you have to
 [heroku](https://geocitizen.herokuapp.com)  
   
 
-=======
 # Geocitizen
->>>>>>> a3175f1c0fdab76be1cea3be0ec00b86a68e345b
