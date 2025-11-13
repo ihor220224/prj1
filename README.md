@@ -1,5 +1,8 @@
 <<<<<<< HEAD
 # SS lab task
+1
+1
+1
 
 1) ans.yml - ansible playbook for installation and configuration software on ec2
 1) deploy-static-content-to-s3.yaml - deploy package to s3
