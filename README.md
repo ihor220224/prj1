@@ -1,12 +1,9 @@
 # SS lab task
 
-1234
-1234
-
-ans.yml - ansible playbook for installation and configuration software on ec2
-deploy-static-content-to-s3.yaml - deploy package to s3
-maven.yml - build and test package
-provision_ec2.yml - create ec2 instance
+1) ans.yml - ansible playbook for installation and configuration software on ec2
+1) deploy-static-content-to-s3.yaml - deploy package to s3
+1) maven.yml - build and test package
+1) provision_ec2.yml - create ec2 instance
 
 # ch-058, geocitizen
 
